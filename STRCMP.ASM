@@ -1,0 +1,85 @@
+.MODEL SMALL
+
+DISPLAY MACRO MSG
+        LEA DX,MSG
+        MOV AH,09H
+        INT 21H
+ENDM
+.DATA
+MSG1 DB 0DH,0AH,"ENTER THE FIRST STRING $"
+MSG2 DB 0DH,0AH,"ENTER THE SECOND STRING $"
+MSG3 DB 0DH,0AH,"LENGTH OF FIRST STRING $"
+MSG4 DB 0DH,0AH,"LENGTH OF SECOND STRING $"
+MSG5 DB 0DH,0AH,"--STRING ARE EQUAL--$"
+MSG6 DB 0DH,0AH,"--STRING ARE NOT EQUAL---$"
+STRING1 DB 80H DUP (?)
+STRING2 DB 80H DUP (?)
+
+.CODE
+        START:  MOV AX,@DATA
+                MOV DS,AX
+                DISPLAY MSG1
+                MOV SI,OFFSET STRING1
+                CALL READSTR
+                MOV BL,CL
+                DISPLAY MSG2
+                MOV SI,OFFSET STRING2
+                CALL READSTR
+                PUSH BX
+                PUSH CX
+                DISPLAY MSG3
+                MOV AL,BL
+                CALL LENG_STR
+                DISPLAY MSG4
+                MOV AL,CL
+                CALL LENG_STR
+                POP CX
+                POP BX
+                CMP CL,BL
+                JNE FAIL
+                MOV SI,OFFSET STRING1
+                MOV DI,OFFSET STRING2
+                CLD
+        CHK:    MOV AL, [SI]
+                CMP AL, [DI]
+                JNZ FAIL
+                INC SI
+                INC DI
+                DEC CL
+                JNZ CHK
+                DISPLAY MSG5
+                JMP FINAL
+
+LENG_STR PROC NEAR
+        XOR AH, AH
+        ADD AL,00H
+        AAM
+        ADD AX,3030H
+        MOV BH,AL
+        MOV DL,AH
+        MOV AH,02H
+        INT 21H
+        MOV DL,BH
+        MOV AH,02H
+        INT 21H
+        RET
+LENG_STR ENDP
+
+READSTR PROC NEAR
+        XOR CL,CL
+        BACK:   MOV AH,01H
+                INT 21H
+                CMP AL,0DH
+                JE FINISH
+                MOV [SI],AL
+                INC SI
+                INC CL
+                JMP BACK
+        FINISH: MOV [SI],BYTE PTR '$'
+                RET
+READSTR ENDP
+        FAIL:   DISPLAY MSG6
+        FINAL:  MOV AH,4CH
+                INT 21H
+END START
+
