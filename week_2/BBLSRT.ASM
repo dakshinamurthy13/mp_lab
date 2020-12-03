@@ -31,10 +31,10 @@ ENDM
                 JE FINAL
                 DISPLAY MSG5
                 JMP FINAL
-        ASCSORT:MOV BL,00H
+        ASCSORT:MOV BL,00H      ;Outer loop variable BL
                 AGAINASC:       MOV SI,OFFSET LIST
-                                MOV CL,00H
-                                MOV BH,CH
+                                MOV CL,00H             ;Inner loop variable CL
+                                MOV BH,CH              ;BH IS COPY OF N-1
                                 SUB BH,BL
                                 PASSASC:        CMP CL,BH
                                                 JNC NEXTASC
@@ -48,13 +48,13 @@ ENDM
                                                 INC SI
                                                 JMP PASSASC
                                         NEXTASC:INC BL
-                                                CMP BL,CH
+                                                CMP BL,CH      ;IF I>N-1
                                                 JC AGAINASC
                                                 JMP FINAL
-        DSCSORT:MOV BL,00H
+        DSCSORT:MOV BL,00H      ;Outer loop variable BL
                 AGAINDSC:       MOV SI,OFFSET LIST
-                                MOV CL,00H
-                                MOV BH,CH
+                                MOV CL,00H               ;Inner loop variable CL
+                                MOV BH,CH                ;BH IS COPY OF N-1
                                 SUB BH,BL
                                 PASSDSC:        CMP CL,BH
                                                 JNC NEXTDSC
@@ -68,8 +68,8 @@ ENDM
                                                 INC SI
                                                 JMP PASSDSC
                                         NEXTDSC:INC BL
-                                                CMP BL,CH
-                                                JNC AGAINDSC
+                                                CMP BL,CH           ;IF I>N-1
+                                                JC AGAINDSC
         FINAL:  MOV AH,4CH
                 INT 21H
 END START
