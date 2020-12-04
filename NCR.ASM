@@ -1,7 +1,7 @@
 .MODEL SMALL
 .DATA
         N DW 8
-        R DW 2
+        R DW 1
         NCR DW 0
 .CODE
         START:
@@ -48,7 +48,7 @@ NCRPROC ENDP
 
 DISP PROC NEAR
         MOV AX,NCR
-        AND AX,00FFH
+        AND AX,00FFH ;beacuse we are expecting only two digit ans
         AAM
         MOV BX,AX
         ADD BX,3030H
