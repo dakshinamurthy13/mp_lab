@@ -1,0 +1,127 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/20/2021  14:31:40  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\motor.obj TO .\Objects\1BM19CS040 PRINT (.\Listings\1BM19CS040.m51) RAMSIZE (256) 
+>> CODE (0X8000-0XFFFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\motor.obj (MOTOR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\1BM19CS040 (MOTOR)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+                    0000H     0030H                  *** GAP ***
+            XDATA   0030H     0001H     ABSOLUTE     
+                    0031H     E7CFH                  *** GAP ***
+            XDATA   E800H     0001H     ABSOLUTE     
+                    E801H     0002H                  *** GAP ***
+            XDATA   E803H     0001H     ABSOLUTE     
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     7FFDH                  *** GAP ***
+            CODE    8000H     002FH     UNIT         ?PR?MAIN?MOTOR
+            CODE    802FH     0024H     UNIT         ?PR?DELAY?MOTOR
+            CODE    8053H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\1BM19CS040 (MOTOR)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MOTOR
+
+?PR?MAIN?MOTOR
+  +--> ?PR?DELAY?MOTOR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\1BM19CS040 (MOTOR)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/20/2021  14:31:40  PAGE 2
+
+
+
+  -------         MODULE        MOTOR
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:8044H         PUBLIC        delay
+  C:8000H         PUBLIC        main
+  X:0030H         PUBLIC        acc
+  X:E800H         PUBLIC        porta
+  X:E803H         PUBLIC        port
+  C:803CH         SYMBOL        L?0010
+  C:803FH         SYMBOL        L?0011
+  -------         PROC          L?0009
+  -------         ENDPROC       L?0009
+  C:803CH         SYMBOL        L?0010
+  C:803FH         SYMBOL        L?0011
+  -------         PROC          DELAY
+  -------         DO            
+  D:0006H         SYMBOL        j
+  -------         ENDDO         
+  C:8044H         LINE#         6
+  C:8044H         LINE#         8
+  C:8052H         LINE#         9
+  -------         ENDPROC       DELAY
+  -------         PROC          MAIN
+  C:8000H         LINE#         10
+  C:8000H         LINE#         11
+  C:8006H         LINE#         12
+  C:8006H         LINE#         13
+  C:8008H         LINE#         14
+  C:8008H         LINE#         15
+  C:8008H         LINE#         16
+  C:8008H         LINE#         17
+  C:8008H         LINE#         18
+  C:800BH         LINE#         19
+  C:800DH         LINE#         20
+  C:800DH         LINE#         21
+  C:8010H         LINE#         22
+  C:8015H         LINE#         23
+  C:8015H         LINE#         24
+  C:8018H         LINE#         25
+  C:801DH         LINE#         26
+  C:801DH         LINE#         27
+  C:8020H         LINE#         28
+  C:8022H         LINE#         29
+  C:8022H         LINE#         30
+  C:8022H         LINE#         31
+  C:8022H         LINE#         32
+  C:8022H         LINE#         33
+  C:8025H         LINE#         34
+  C:802AH         LINE#         35
+  C:802AH         LINE#         36
+  C:802DH         LINE#         37
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MOTOR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0053H BYTE ( 4%) *
+******************************************************************************
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/20/2021  14:31:40  PAGE 3
+
+
+
+Program Size: data=9.0 xdata=3 code=98
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

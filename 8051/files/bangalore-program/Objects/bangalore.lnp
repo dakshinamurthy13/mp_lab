@@ -1,0 +1,4 @@
+".\Objects\bangalore.obj" 
+TO ".\Objects\bangalore" 
+PRINT(".\Listings\bangalore.m51") RAMSIZE(256) 
+CODE( 0X8000-0XFFFF )

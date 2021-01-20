@@ -1,0 +1,62 @@
+C51 COMPILER V9.60.0.0   BANGALORE                                                         01/19/2021 13:32:54 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE BANGALORE
+OBJECT MODULE PLACED IN .\Objects\bangalore.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bangalore.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\bangalore.lst) TABS(2) OBJECT(.\Objects\bangalore.obj)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include <reg51.h>
+   3          char xdata CommW _at_ 0xe803;
+   4          char xdata portB _at_ 0xe801;
+   5          char xdata portC _at_ 0xe802;
+   6          char port[20]={0xff,0xff,0xff,0xff,0x83,0x88,0xC8,0x82,0x88,0xC7,0xC0,0xAF,0x86},i;
+   7          void delay(){
+   8   1          long u;
+   9   1          for(u=0;u<4000;u++);
+  10   1      }
+  11          void main(){
+  12   1          int d,b,j,m;
+  13   1          unsigned char k;
+  14   1          CommW=0x80;
+  15   1          do
+  16   1          {
+  17   2              i=0;
+  18   2              for(d=0;d<1;d++){
+  19   3                  for(b=13;b>0;b--){
+  20   4                      delay();
+  21   4                      k=port[i++];
+  22   4                      for(j=0;j<8;j++){
+  23   5                          m=k;
+  24   5                          k=k&0x80;
+  25   5                          if(k==00)
+  26   5                              portB=0x00;
+  27   5                          else 
+  28   5                              portB=0x01;
+  29   5                          portC=0x01;
+  30   5                          portC=0x00;
+  31   5                          k=m;
+  32   5                          k<<=1;
+  33   5                      }
+  34   4                  }
+  35   3                  delay();
+  36   3              }
+  37   2          } while (1);
+  38   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    184    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     21      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

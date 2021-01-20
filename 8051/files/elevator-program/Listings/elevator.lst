@@ -1,0 +1,117 @@
+C51 COMPILER V9.60.0.0   ELEVATOR                                                          01/19/2021 22:34:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE ELEVATOR
+OBJECT MODULE PLACED IN .\Objects\elevator.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE elevator.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -elevator.lst) TABS(2) OBJECT(.\Objects\elevator.obj)
+
+line level    source
+
+   1          #include<stdio.h>
+   2          #include<reg51.h>
+   3          
+   4          unsigned char xdata CommandWord  _at_  0xe803;
+   5          unsigned char xdata PortA  _at_  0xe800;         
+   6          unsigned char xdata PortB  _at_  0xe801;        
+   7          unsigned char xdata PresentFloor,RequestedFloor,Step = 0xf0;                      
+   8          unsigned long xdata Count,i;    
+   9          
+  10          void Delay(){
+  11   1        for(Count = 0; Count <= 4500; Count++);
+  12   1      }
+  13                          
+  14          void Reset(){
+  15   1          Step = Step & 0x0f;
+  16   1          PortA = Step;
+  17   1          Step = Step | 0xf0;
+  18   1          PortA = Step;
+  19   1      }
+  20          void GoUp(){
+  21   1          switch(RequestedFloor){
+  22   2              case 0x0d:  while(Step < 0xf3){
+  23   3                              Step++;
+  24   3                              PortA = Step;
+  25   3                              Delay();
+  26   3                          }
+  27   2                          Reset();
+  28   2                          break;
+  29   2              case 0x0b:  while(Step < 0xf6){
+  30   3                              Step++;
+  31   3                              PortA = Step;
+  32   3                              Delay();
+  33   3                          }    
+  34   2                          Reset();
+  35   2                          break;
+  36   2              case 0x07:  while(Step < 0xf9){
+  37   3                              Step++;
+  38   3                              PortA = Step;
+  39   3                              Delay();
+  40   3                          }    
+  41   2                          Reset();
+  42   2                          break;
+  43   2          }
+  44   1      }
+  45          
+  46          void GoDown(){
+  47   1          switch(RequestedFloor){
+  48   2              case 0x0d:    while(Step > 0xf3){
+  49   3                              Step--;
+  50   3                              PortA = Step;
+  51   3                              Delay();
+  52   3                          }    
+  53   2                          Reset();
+  54   2                          break;
+C51 COMPILER V9.60.0.0   ELEVATOR                                                          01/19/2021 22:34:59 PAGE 2   
+
+  55   2      
+  56   2              case 0x0b:  while(Step > 0xf6){
+  57   3                              Step--;
+  58   3                              PortA = Step;
+  59   3                              Delay();
+  60   3                          }    
+  61   2                          Reset();
+  62   2                          break;
+  63   2              case 0x0e:  while(Step > 0xf0){
+  64   3                              Step--;
+  65   3                              PortA = Step;
+  66   3                              Delay();
+  67   3                          }    
+  68   2                          Reset();
+  69   2                          break;
+  70   2          }
+  71   1      }
+  72          
+  73          
+  74          void main(){
+  75   1          CommandWord = 0x82;                            
+  76   1          PortA = 0xf0;                                    
+  77   1          PresentFloor = 0x0e;    
+  78   1          while(1){
+  79   2              RequestedFloor = PortB;
+  80   2              RequestedFloor = RequestedFloor& 0x0f; 
+  81   2                  
+  82   2              if(RequestedFloor != 0x0f &&RequestedFloor != PresentFloor){       
+  83   3                      if(RequestedFloor<PresentFloor)
+  84   3                          GoUp();
+  85   3                      else
+  86   3                          GoDown();
+  87   3                      PresentFloor = RequestedFloor;
+  88   3                  }
+  89   2              RequestedFloor = PortB;    
+  90   2          }
+  91   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    335    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     11    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

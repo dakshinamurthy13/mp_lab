@@ -1,0 +1,4 @@
+".\Objects\motor.obj" 
+TO ".\Objects\1BM19CS040" 
+PRINT(".\Listings\1BM19CS040.m51") RAMSIZE(256) 
+CODE( 0X8000-0XFFFF )

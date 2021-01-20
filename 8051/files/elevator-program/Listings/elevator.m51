@@ -1,0 +1,211 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/19/2021  22:35:00  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\elevator.obj TO .\Objects\elevator PRINT (.\Listings\elevator.m51) RAMSIZE (256) C
+>> ODE (0X8000-0XFFFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\elevator.obj (ELEVATOR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULCMP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LSTXDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LSTKXDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\elevator (ELEVATOR)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     000BH     UNIT         ?XD?ELEVATOR
+                    000BH     E7F5H                  *** GAP ***
+            XDATA   E800H     0001H     ABSOLUTE     
+            XDATA   E801H     0001H     ABSOLUTE     
+                    E802H     0001H                  *** GAP ***
+            XDATA   E803H     0001H     ABSOLUTE     
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     7FFDH                  *** GAP ***
+            CODE    8000H     008CH     UNIT         ?C_C51STARTUP
+            CODE    808CH     0051H     UNIT         ?PR?GODOWN?ELEVATOR
+            CODE    80DDH     004FH     UNIT         ?PR?DELAY?ELEVATOR
+            CODE    812CH     004EH     UNIT         ?C?LIB_CODE
+            CODE    817AH     004DH     UNIT         ?PR?MAIN?ELEVATOR
+            CODE    81C7H     004CH     UNIT         ?PR?GOUP?ELEVATOR
+            CODE    8213H     0016H     UNIT         ?PR?RESET?ELEVATOR
+            CODE    8229H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\elevator (ELEVATOR)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?ELEVATOR
+  +--> ?C_INITSEG
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2021  22:35:00  PAGE 2
+
+
+
+?PR?MAIN?ELEVATOR
+  +--> ?PR?GOUP?ELEVATOR
+  +--> ?PR?GODOWN?ELEVATOR
+
+?PR?GOUP?ELEVATOR
+  +--> ?PR?DELAY?ELEVATOR
+  +--> ?PR?RESET?ELEVATOR
+
+?PR?GODOWN?ELEVATOR
+  +--> ?PR?DELAY?ELEVATOR
+  +--> ?PR?RESET?ELEVATOR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\elevator (ELEVATOR)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ELEVATOR
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:8213H         PUBLIC        Reset
+  X:0000H         PUBLIC        Count
+  X:0004H         PUBLIC        Step
+  C:817AH         PUBLIC        main
+  X:0005H         PUBLIC        RequestedFloor
+  C:808CH         PUBLIC        GoDown
+  X:E803H         PUBLIC        CommandWord
+  X:0006H         PUBLIC        i
+  X:E800H         PUBLIC        PortA
+  X:E801H         PUBLIC        PortB
+  X:000AH         PUBLIC        PresentFloor
+  C:80E5H         PUBLIC        Delay
+  C:81C7H         PUBLIC        GoUp
+  C:80DDH         SYMBOL        L?0039
+  C:80DFH         SYMBOL        L?0040
+  -------         PROC          L?0038
+  -------         ENDPROC       L?0038
+  C:80DDH         SYMBOL        L?0039
+  C:80DFH         SYMBOL        L?0040
+  -------         PROC          DELAY
+  C:80E5H         LINE#         10
+  C:80E5H         LINE#         11
+  C:812BH         LINE#         12
+  -------         ENDPROC       DELAY
+  -------         PROC          RESET
+  C:8213H         LINE#         14
+  C:8213H         LINE#         15
+  C:821AH         LINE#         16
+  C:821EH         LINE#         17
+  C:8224H         LINE#         18
+  C:8228H         LINE#         19
+  -------         ENDPROC       RESET
+  -------         PROC          GOUP
+  C:81C7H         LINE#         20
+  C:81C7H         LINE#         21
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2021  22:35:00  PAGE 3
+
+
+  C:81D7H         LINE#         22
+  C:81E4H         LINE#         23
+  C:81E4H         LINE#         24
+  C:81E4H         LINE#         25
+  C:81E7H         LINE#         26
+  C:81E9H         LINE#         29
+  C:81F6H         LINE#         30
+  C:81F6H         LINE#         31
+  C:81F6H         LINE#         32
+  C:81F9H         LINE#         33
+  C:81FBH         LINE#         34
+  C:81FBH         LINE#         35
+  C:81FDH         LINE#         36
+  C:820AH         LINE#         37
+  C:820AH         LINE#         38
+  C:820AH         LINE#         39
+  C:820DH         LINE#         40
+  C:820FH         LINE#         41
+  C:8212H         LINE#         42
+  C:8212H         LINE#         43
+  C:8212H         LINE#         44
+  -------         ENDPROC       GOUP
+  -------         PROC          GODOWN
+  C:808CH         LINE#         46
+  C:808CH         LINE#         47
+  C:809BH         LINE#         48
+  C:80A8H         LINE#         49
+  C:80AAH         LINE#         50
+  C:80AAH         LINE#         51
+  C:80ADH         LINE#         52
+  C:80AFH         LINE#         56
+  C:80BCH         LINE#         57
+  C:80BEH         LINE#         58
+  C:80BEH         LINE#         59
+  C:80C1H         LINE#         60
+  C:80C3H         LINE#         61
+  C:80C3H         LINE#         62
+  C:80C5H         LINE#         63
+  C:80D2H         LINE#         64
+  C:80D4H         LINE#         65
+  C:80D4H         LINE#         66
+  C:80D7H         LINE#         67
+  C:80D9H         LINE#         68
+  C:80DCH         LINE#         69
+  C:80DCH         LINE#         70
+  C:80DCH         LINE#         71
+  -------         ENDPROC       GODOWN
+  -------         PROC          MAIN
+  C:817AH         LINE#         74
+  C:817AH         LINE#         75
+  C:8180H         LINE#         76
+  C:8186H         LINE#         77
+  C:818CH         LINE#         78
+  C:818CH         LINE#         79
+  C:8194H         LINE#         80
+  C:8197H         LINE#         82
+  C:81A8H         LINE#         83
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2021  22:35:00  PAGE 4
+
+
+  C:81ADH         LINE#         84
+  C:81B2H         LINE#         86
+  C:81B5H         LINE#         87
+  C:81BDH         LINE#         88
+  C:81BDH         LINE#         89
+  C:81C5H         LINE#         90
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        ELEVATOR
+
+  -------         MODULE        ?C?ULCMP
+  C:812CH         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+  -------         MODULE        ?C?LSTXDATA
+  C:813DH         PUBLIC        ?C?LSTXDATA
+  -------         ENDMOD        ?C?LSTXDATA
+
+  -------         MODULE        ?C?LSTKXDATA
+  C:8149H         PUBLIC        ?C?LSTKXDATA
+  -------         ENDMOD        ?C?LSTKXDATA
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0153H BYTE (16%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=14 code=561
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
